@@ -24,6 +24,11 @@
                     formatter: '.formatter.numberUnit'
                 }"
                 unit="{CurrencyCode}" />
+                <ObjectAttribute 
+                text="{Name}"
+                ></ObjectAttribute>
+             
+
         </semantic:headerContent>
 
         <semantic:sendEmailAction>

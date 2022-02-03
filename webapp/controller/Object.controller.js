@@ -50,9 +50,28 @@ sap.ui.define([
             }
         },
 
+        onShowDetailPopover : function (oEvent) {
+            var oPopover = this._getPopover();
+        	var oSource = oEvent.getSource();
+        	oPopover.bindElement(oSource.getBindingContext().getPath());
+        	// open dialog
+        	oPopover.openBy(oEvent.getParameter("domRef"));
+        },
+
         /* =========================================================== */
         /* internal methods                                            */
         /* =========================================================== */
+
+        _getPopover : function () {
+            // create dialog lazily
+                if (!this._oPopover) {
+                    // create popover via fragment factory
+                    this._oPopover = sap.ui.xmlfragment(
+                    "opensap.manageproducts.manageproducts.view.ResponsivePopover", this);
+                    this.getView().addDependent(this._oPopover);
+                }
+                return this._oPopover;
+            }, 
 
         /**
          * Binds the view to the object path.

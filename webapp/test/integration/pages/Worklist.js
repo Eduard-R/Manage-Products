@@ -1,5 +1,7 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
+    "sap/ui/test/actions/Press",
+    "sap/ui/test/actions/EnterText",
 	"sap/ui/test/actions/Press",
 	"sap/ui/test/actions/EnterText",
 	"sap/ui/test/matchers/AggregationLengthEquals",
@@ -11,6 +13,7 @@ sap.ui.define([
 
 	var sViewName = "Worklist",
 		sTableId = "table",
+        sAddButtonId = "addButton",
 		sSearchFieldId = "searchField",
 		sSomethingThatCannotBeFound = "*#-Q@@||";
 
@@ -126,7 +129,17 @@ sap.ui.define([
 
 				iSearchForSomethingWithNoResults : function () {
 					return this.iSearchForValueWithActions([new EnterText({text: sSomethingThatCannotBeFound}), new Press()]);
-				}
+				},
+
+                iPressAdd : function () {
+                    return this.waitFor({
+                        id: sAddButtonId,
+                        viewName : sViewName,
+                        actions : new Press(),
+                        errorMessage : "Add button not found"
+                    });
+                },
+    
 
 			}, ),
 
